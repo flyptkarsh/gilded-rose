@@ -8,6 +8,21 @@ class GildedRose
   end
 
   def tick
+    if @name == 'Conjured Mana Cake'
+      if @quality < 1 #no quality
+        @quality = @quality
+      elsif @quality < 11 #mod quality
+        if @days_remaining == 0 # on sell date
+          @quality = @quality - 2
+        elsif @days_remaining > 0  # before sell date
+          @quality = @quality  - 1
+        elsif @days_remaining < 0 # after sell date
+          @quality = @quality - 2
+        end
+      elsif @quality < 50 #max quality
+        @quality = @quality + 2
+      end
+    end
     if @name != 'Aged Brie' && @name != 'Backstage passes to a TAFKAL80ETC concert'
       if @quality > 0
         if @name != 'Sulfuras, Hand of Ragnaros'
